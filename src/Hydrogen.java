@@ -18,27 +18,19 @@ public class Hydrogen extends Thread {
 	
 	public void run() {
 	    try {
-	    	 // you will need to fix below
-	    	//System.out.println("Hydrogen "+ this.id +" Present");
 	    	sem.acquire();
 	    	barrier.phase1(); //Only 8 hydrogens at a time are allowed through.
-	    	
-	    	//System.out.println(this.id + " hydrogen through.");
-	    	
 	    	
 	    	sharedPropane.addHydrogen();	 
 	    	sharedPropane.bond("H"+ this.id);
 	    	
-	    	//System.out.println(barrier.count);
 	    	sharedPropane.barrier.b_wait();	//Wait for all threads to finish printing.
 	    	
 	    	barrier.phase2();
 	    	
 	    	sem.release();
-	    	//System.out.println("Carbon Exit!");
 	    }
 	   catch (InterruptedException ex) { /* not handling this  */}
-	    //System.out.println(" ");
 	}
 
 }

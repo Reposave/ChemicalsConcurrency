@@ -20,14 +20,9 @@ public class Carbon extends Thread {
 	
 	public void run() {
 	    try {	 
-	    	 // you will need to fix below
-	    	//System.out.println("Carbon "+ this.id +" Present");
 	    	sem.acquire();
 	    	barrier.phase1(); //Only 3 carbons at a time are allowed through.
-	    	
-	    	//System.out.println(this.id+" Carbon through.");
-	    	
-	    	//sharedPropane.barrier.b_wait();
+	 
 	    	print_sem.acquire();
 	    	if(print){
 	    		System.out.println("---Group ready for bonding---");
@@ -41,13 +36,10 @@ public class Carbon extends Thread {
 	    	sharedPropane.bond("C"+ this.id);  //bond
 	    	sharedPropane.barrier.b_wait(); //Wait for all threads to finish printing.
 	    	print = true;
-	    	//System.out.println(barrier.count);
+
 	    	barrier.phase2(); //The semaphore and Barrier are necessary as we want to make sure all 3 threads are done first and the count is 0 before any other thread comes in.
 	    	
 	    	sem.release();
-	    	
-	    	
-	    	//System.out.println("Carbon Exit!");
 	    }
 	    catch (InterruptedException ex) { /* not handling this  */}
 	   // System.out.println(" ");
