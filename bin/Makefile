@@ -28,16 +28,14 @@ clean:
 
 docs:	
 	javadoc -classpath $(BINDIR) -d $(DOCDIR) $(SRCDIR)/*.java
-
 run1:
 	 @java molecule.RunSimulation "24" "9"
-
 run2:
 	 @java molecule.RunSimulation "32" "12"
 run3:
-
+	 @java molecule.RunSimulation "31" "12"
 run4:
-
+	 @java molecule.RunSimulation "31" "11"
 run5:
 
 run6:

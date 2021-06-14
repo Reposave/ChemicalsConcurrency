@@ -25,12 +25,15 @@ public class Hydrogen extends Thread {
 	    	
 	    	//System.out.println(this.id + " hydrogen through.");
 	    	
-	    	//sharedPropane.barrier.b_wait();
-	    	sharedPropane.addHydrogen();			 
+	    	
+	    	sharedPropane.addHydrogen();	 
 	    	sharedPropane.bond("H"+ this.id);
 	    	
 	    	//System.out.println(barrier.count);
+	    	sharedPropane.barrier.b_wait();	//Wait for all threads to finish printing.
+	    	
 	    	barrier.phase2();
+	    	
 	    	sem.release();
 	    	//System.out.println("Carbon Exit!");
 	    }

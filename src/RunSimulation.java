@@ -13,6 +13,15 @@ public class RunSimulation {
 		int no_hydrogens = Integer.parseInt(args[0]);
 		int no_carbons = Integer.parseInt(args[1]);
 		
+		if(no_carbons%3 != 0){
+			System.out.println("Some carbons will remain unbonded after this chemical bonding.");
+			System.exit(0);
+		}
+		else if(no_hydrogens != (no_carbons/3)*8){
+				System.out.println("Some hydrogens will remain unbonded after this chemical bonding.");
+				System.exit(0);
+			}
+		
 		System.out.println("Starting simulation with "+no_hydrogens+" H and "+no_carbons + " C");
 		
 		Carbon[] carbons = new Carbon[no_carbons];

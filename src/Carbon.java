@@ -37,11 +37,13 @@ public class Carbon extends Thread {
 	    	
 	    	
 	    	sharedPropane.addCarbon();
-	    	sharedPropane.bond("C"+ this.id);  //bond
 	    	
+	    	sharedPropane.bond("C"+ this.id);  //bond
+	    	sharedPropane.barrier.b_wait(); //Wait for all threads to finish printing.
+	    	print = true;
 	    	//System.out.println(barrier.count);
 	    	barrier.phase2(); //The semaphore and Barrier are necessary as we want to make sure all 3 threads are done first and the count is 0 before any other thread comes in.
-	    	print = true;
+	    	
 	    	sem.release();
 	    	
 	    	
