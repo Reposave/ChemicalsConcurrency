@@ -19,10 +19,11 @@ public class Hydrogen extends Thread {
 	    try {
 	    	 // you will need to fix below
 	    	System.out.println("---Group ready for bonding---");
-	    	barrier.b_wait();
+	    	barrier.phase1();
 	    	sharedPropane.barrier.b_wait();	
 	    	sharedPropane.addHydrogen();			 
 	    	sharedPropane.bond("H"+ this.id);
+	    	barrier.phase2();
 	    }
 	   catch (InterruptedException ex) { /* not handling this  */}
 	    //System.out.println(" ");
