@@ -5,10 +5,10 @@ public class Carbon extends Thread {
 	private static int carbonCounter =0;
 	private int id;
 	private Propane sharedPropane;
-	public BarrierReusable barrier; // all atoms must be at the barrier
+	public static BarrierReusable barrier = new BarrierReusable(3); // all atoms must be at the barrier //3 carbon atoms in Propane
 	
 	public Carbon(Propane propane_obj) {
-		this.barrier=new BarrierReusable(3); //3 carbon atoms in Propane
+		 
 		Carbon.carbonCounter+=1;
 		id=carbonCounter;
 		this.sharedPropane = propane_obj;
@@ -17,11 +17,14 @@ public class Carbon extends Thread {
 	public void run() {
 	    try {	 
 	    	 // you will need to fix below
-	    	System.out.println("---Group ready for bonding---");
-	    	barrier.phase1();
+	    	
+	    	barrier.phase1(); //Only 3 carbons at a time are allowed through.
+	    	System.out.println(this.id+" Carbon through.");
 	    	sharedPropane.barrier.b_wait();
+	    	System.out.println("---Group ready for bonding---");
 	    	sharedPropane.addCarbon();
 	    	sharedPropane.bond("C"+ this.id);  //bond
+	    	sharedPropane.removeCarbon(1);
 	    	barrier.phase2();
 	    	 
 	    }
